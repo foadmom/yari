@@ -1,0 +1,50 @@
+---
+Config :        
+    General :
+        Debug     : true
+        Version   : 0.3
+        Build     : SD0F89G0SDF89G
+        Consensus : 3
+    Modules :
+        Networks :
+            Transport:
+                # artemis AMQP settings
+                ContainerName     :    YARI_Container
+                Host              :    amqp://localhost:5672
+                # Host              :    amqp://172.17.0.2
+                # Port              :    5672
+                User              :    foadm
+                Password          :    Pa55w0rd
+                #
+                HeartbeatPingQueue     : AMQP-HeartbeatPingQueue
+                HeartbeatPongQueue     : AMQP-HeartbeatPongQueue
+                CampaignQueue          : AMQP-CampaignBroadcast
+                VotingQueue            : AMQP-VotingBooth
+                # 
+                ListenerPrefetch  : 1
+                MessageExpiry     : 100
+            Sockets :
+                Host :	127.0.0.1
+        # heartbeat
+        Heartbeat :
+            PingInterval      :   1000    # how often ping is sent out
+            PongRcvTimeout    :   800     # how long does the leader wait for pongs
+            PingRcvTimeout    :   2200    # how long does the follower waits for ping before going into campaign
+        # campaign settings
+        Campaign:
+            # once a campaign starts every follower waits a random period. 
+            # at the end if there has been no other nomination, then the
+            # follower nominates itself for the leader. the min, max below
+            # are the range between which the random wait is generated
+            MinWait   : 0
+            MaxWait   : 100
+            RetryWait : 300    # in case the campaign does not yeild a leader
+                               # wait for period before starting a new campaign. 
+                               # not used at the moment
+        # security settings
+        Security :
+            SSL			: true
+
+        Storage    :
+            LogDir    : /home/foadm/temp
+...

@@ -1,0 +1,42 @@
+# Dockerfile References: https://docs.docker.com/engine/reference/builder/
+
+# cd /data/workspaces/go/src/yari
+# docker build --progress=plain -t=yari ./
+# docker run -d -p 5672:5672 yari
+# docker run -d --net="host" yari
+# docker logs -f <container>
+# ======== explore this filesystem using bash (for example)
+# docker run -t -i mysnapshot /bin/bash
+
+# Start from the latest golang base image
+FROM golang:latest
+
+# Add Maintainer Info
+LABEL maintainer="foad momtazi"
+
+# Set the Current Working Directory inside the container
+WORKDIR /go
+
+# Copy go mod and sum files
+#COPY go.mod go.sum ./
+#COPY config.yaml ./
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+#RUN go mod download
+
+# Copy the source from the current directory to the Working Directory inside the container
+COPY ../../foadm /go/src/foadm/.
+
+# get dependencies
+RUN go get -d ./...
+
+# Build the Go app
+RUN go install ./...
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+# Command to run the executable
+#CMD ["/data/workspaces/go/bin/yari"]
+CMD ["yari"]
+#CMD yari -initialRole=1 -nodeId=leader-1

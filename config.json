@@ -1,0 +1,58 @@
+{
+    "Config" :
+    {
+    	"General" :
+    	{
+    		"Debug"     : true,
+    		"Version"   : "0.3",
+            "Build"     : "SD0F89G0SDF89G",
+            "Consensus" : 3
+		},
+		"Modules" :
+		{
+	        "Networks" :
+	        {
+	        	"Transport":
+	        	{
+                    "ContainerName"     :    "YARI_Container",
+	                "Host"              :    "amqp://localhost",
+                    "Port"              :    "1234",
+                    "User"              :    "foadm",
+                    "Password"          :    "Pa55w0rd",
+                    "HeartbeatPingQueue"     : "AMQP-HeartbeatPingQueue",
+                    "HeartbeatPongQueue"     : "AMQP-HeartbeatPongQueue",
+                    "CampaignQueue"          : "AMQP-CampaignBroadcast",
+                    "VotingQueue"            : "AMQP-VotingBooth",
+
+                    "ListenerPrefetch"  : 1,
+                    "MessageExpiry"     : 100
+
+				},
+				"Sockets" :
+				{
+					"Host" :	"localhost"
+                },
+                "Heartbeat" :
+                {
+                    "PingInterval"      :   1000,
+                    "PongRcvTimeout"    :   800,
+                    "PingRcvTimeout"    :   2200
+                }
+            },
+            "Campaign":
+            {
+                "MinWait"   : 0, 
+                "MaxWait"   : 100
+            },
+
+			"Security" :
+			{
+				"SSL"			: true
+            },
+            "Storage"    :
+            {
+                "LogDir"    : "/home/foadm/temp"
+            }
+		}
+    }
+}

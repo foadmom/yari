@@ -1,0 +1,91 @@
+channels:
+    Root channel (signal)
+    HB follower channel  (*RaftMessage)
+    HB leaser   channel  (*RaftMessage)
+    campaign    channel  (*RaftMessage)
+
+initialise
+set role to Follower
+start main loop
+start campaign loop
+rootChannel <- start Follower HB
+
+=====================================
+mainLoop: (root channel)
+    start Follower HB   role = follower
+    stop  Follower HB
+    Follower HB stoppped
+    
+    start Leader HB     role = leader
+    stop  Leader HB
+    
+    start campaign      role = campaign
+    leader elected
+        start HB
+    no consensu
+        wait for a while
+        start campaign
+    connection lost
+        re-establish connection
+    lost campaign manager
+        restart campaign manager
+    lost HB manager
+        restart HB manager
+
+=====================================
+start Follower HB: (HB follower channel)
+    if role == follower
+        initialise Follower HB comms
+        start processing:
+            receive HB ping
+            respond with HB pong
+            if no ping 
+                send HB stopped to main loop
+                deinitialise comms
+                exit
+    
+=====================================
+stop Follower HB: 
+    deInitialise Follower HB comms
+    close the Follower HB goroutine. ie return
+    
+=====================================
+start Leader HB: (HB leader channel)
+    if role == leader
+        initialise Leader HB comms
+        start processing:
+            send HB ping
+            receive HB pong
+            update the list of nodes and stati
+
+=====================================
+campaign loop: (campaign channel)
+    listen to campaign channel
+    if message == start campaign
+        if role campaign 
+            randomTimer
+            campaignTimeout
+            select 
+                randomTimer:
+                    send out nomination for yourself
+                nomination:
+                    vote for the candidate
+                vote:
+                    update the candidate list and their vote count
+                    if no of votes for a candidate == concensus
+                        change role to follwer or leader
+                        send signal (leader selected) to RootChannel
+                    if timeout send signal (no consensu) to Rootchannel
+                    
+                    
+=====================================
+TODO
+    separate connection from queues
+    establish separate func for each process queue in the loop cases
+    encapsulate queues in each process loop
+    de-initialise queues before initialising them
+    
+    campaign manager:
+        move queue init into the manager to make it self contained
+        create a structure for all the local vars
+        create smaller functions for each case, where appropriate
