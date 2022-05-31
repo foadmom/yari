@@ -7,7 +7,8 @@ import (
 	"log"
 	"time"
 
-	"qpid.apache.org/electron"
+	"github.com/apache/qpid-proton/go/pkg/electron"
+
 )
 
 type Buffer 	[]byte;
