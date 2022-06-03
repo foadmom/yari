@@ -1,9 +1,9 @@
-module yari
+module github.com/foadmom/yari
 
 go 1.18
 
 require (
-	github.com/apache/qpid-proton v0.0.0-20220527222603-e2fa36f86990
+	github.com/apache/qpid-proton v0.0.0-20220602012803-5aaa655cb102
 	github.com/google/uuid v1.3.0
 	github.com/stretchr/testify v1.7.1
 	gopkg.in/yaml.v2 v2.4.0

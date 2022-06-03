@@ -1,5 +1,5 @@
-github.com/apache/qpid-proton v0.0.0-20220527222603-e2fa36f86990 h1:b4wVx7P9nlABym1ZPChljxkr5boGIwwClcsUOUTDEe0=
-github.com/apache/qpid-proton v0.0.0-20220527222603-e2fa36f86990/go.mod h1:KzZ93AoKqo5DrIyNm7lQ8geWIJWngn+vLwKSpRtJ/cc=
+github.com/apache/qpid-proton v0.0.0-20220602012803-5aaa655cb102 h1:auoVgzdzRmyNTzehgXfK7dBX/g6xKvTJAW/M4uj1B0M=
+github.com/apache/qpid-proton v0.0.0-20220602012803-5aaa655cb102/go.mod h1:KzZ93AoKqo5DrIyNm7lQ8geWIJWngn+vLwKSpRtJ/cc=
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/google/uuid v1.3.0 h1:t6JiXgmwXMjEs8VusXIJk2BXHsn+wx8BZdTaoZ5fu7I=
